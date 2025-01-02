@@ -322,7 +322,7 @@ const fetchUsersComments = async(userId) =>
  * @param {*} commentText
  * @returns response.rows[0]
  */
-const updateComment = async({ commentId, userId, commentText }) => 
+const modifyComment = async({ commentId, userId, commentText }) => 
 {
     const SQL = `
     
@@ -341,7 +341,7 @@ const updateComment = async({ commentId, userId, commentText }) =>
  * @param {*} commentId
  * @param {*} userId
  */
-const deleteComment = async ({ commentId, userId }) => 
+const removeComment = async ({ commentId, userId }) => 
 {
     const SQL = `
 
@@ -430,8 +430,8 @@ module.exports =
     deleteReview,
     createNewComment,
     fetchUsersComments,
-    updateComment,
-    deleteComment,
+    modifyComment,
+    removeComment,
     authenticate,
     fetchUsers,
     findUserWithToken  

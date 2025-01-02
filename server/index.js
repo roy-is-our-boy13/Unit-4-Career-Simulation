@@ -14,8 +14,8 @@ const
     deleteReview,
     createNewComment,
     fetchUsersComments,
-    updateComment,
-    deleteComment,
+    modifyComment,
+    removeComment,
     authenticate,
     fetchUsers,
     findUserWithToken
@@ -277,13 +277,13 @@ app.put('/api/comments/:id', isLoggedIn, async (req, res) =>
 {
     try 
     {
-        const updated = await updateComment(
+        const modifiedComment = await modifyComment(
         {
             commentId: req.params.id,
             userId: req.user.id,
             commentText: req.body.commentText
         });
-        res.send(updated);
+        res.send(modifiedComment);
     } 
     catch(ex) 
     {
@@ -295,7 +295,7 @@ app.delete('/api/comments/:id', isLoggedIn, async (req, res) =>
 {
     try 
     {
-        await deleteComment({ commentId: req.params.id, userId: req.user.id });
+        await removeComment({ commentId: req.params.id, userId: req.user.id });
         res.sendStatus(204);
     } 
     catch(ex) 
